@@ -41,8 +41,8 @@ server.app.use('/usuario', server.authMiddleware.auth, server.usuarioController.
 server.app.use('/auth', server.authController.router);
 
 // make server listen on some port
-((port = CONFIG.PORT) => {
-  server.app.listen(port, () => console.log(`> Listening on port ${port}`));
+(() => {
+  server.app.listen(CONFIG.PORT, () => console.log(`> Listening on port ${CONFIG.PORT}`));
   mongoose.connect(CONFIG.MONGO_URI, { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true, useCreateIndex: true })
     .then(()=> console.log('Conectado a MongoDB APP'))
     .catch(()=> console.log('No fue posible conectar a MongoDB'));
