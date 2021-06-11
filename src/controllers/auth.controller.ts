@@ -15,6 +15,7 @@ export class AuthController {
     }
 
     private login = async (req: Request, res: Response, next: NextFunction) => {
+        console.log('AuthController - login');
         return await this.authService.login(req, res , next);
     }
     

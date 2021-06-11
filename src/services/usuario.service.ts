@@ -11,6 +11,11 @@ export class UsuarioService {
 
     public crearUsuario = async (req: Request, res: Response, next: NextFunction) => {
 
+        if(!req.body.correo || !req.body.password) {            
+            res.status(422).send({ error: 'Parámetros incompletos.' });
+            return;
+        }
+
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(req.body.password, salt);
 
@@ -22,7 +27,7 @@ export class UsuarioService {
             });
         })
         .catch((error) => {
-            console.log(error);
+            next(error);
         });
     }
 }

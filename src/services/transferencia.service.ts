@@ -8,22 +8,27 @@ export class TransferenciaService {
     constructor() {}
 
     public transferirMonto = async (req: Request, res: Response, next: NextFunction) => {
-        console.log('Service - transferirMonto');
-        const transferencia = req.body;        
-        return await this.transferenciaRepository
-            .transferir(transferencia.usuario, transferencia.destinatario, transferencia.monto)
+        console.log('TransferenciaService - transferirMonto'); 
+        if(!req.body.usuario || !req.body.destinatario || !req.body.monto) {
+            res.status(422).send({ error: 'Campos incompletos' });
+            return;
+        }
+        return await this.transferenciaRepository.transferir(req.body)
             .then((result) => {
-                res.send(result);
+                res.status(201).send(result);
             })
             .catch((error) => {
-                res.send(error);
+                next(error);
             });
     }
 
     public obtenerTransferenciasPorUsuario = async (req: Request, res: Response, next: NextFunction) => {
-        console.log('Service - obtenerTransferenciaPorUsario');
-        const usuario = req.params.id;
-        return await this.transferenciaRepository.obtenerTransferenciaPorUsuario(usuario)
+        console.log('TransferenciaService - obtenerTransferenciaPorUsario');
+        if(!req.params.id) {
+            res.status(422).send({ error: 'Parámetros incompletos.' });
+            return;
+        }
+        return await this.transferenciaRepository.obtenerTransferenciaPorUsuario(req.params.id)
             .then((result) => {
                 if(!result) {
                     res.status(404).send({ mensaje : 'No tienes transferencias asociadas.'});
@@ -31,8 +36,7 @@ export class TransferenciaService {
                 res.status(200).send(result);
             })
             .catch((error) => {
-                console.log('Error -> ', error);
-                return error;
+                next(error);
             }); 
     }
 

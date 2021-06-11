@@ -11,11 +11,12 @@ export class UsuarioController {
         this.inicializarRutas();
     }
 
-    inicializarRutas() {
+    private inicializarRutas() {
         this.router.post('/crear', this.crearUsuario);
     }
 
-    public crearUsuario = async (req: Request, res: Response, next: NextFunction) => {
+    private crearUsuario = async (req: Request, res: Response, next: NextFunction) => {
+        console.log('UsuarioController - crearUsuario');
         return await this.usuarioService.crearUsuario(req, res , next);
     }
 }

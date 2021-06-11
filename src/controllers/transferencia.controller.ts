@@ -16,12 +16,12 @@ export class TransferenciaController {
     }
 
     public transferirMonto = async (req: Request, res: Response, next: NextFunction) => {  
-        console.log('Controller - transferirMonto');
+        console.log('TransferenciaController - transferirMonto');
         return await this.transferenciaService.transferirMonto(req, res, next);
     }
 
     public obtenerTransferenciasPorUsuario = async (req: Request, res: Response, next: NextFunction) => {
-        console.log('Controller - obtenerTransferenciaPorUsario');
+        console.log('TransferenciaController - obtenerTransferenciaPorUsario');
         return await this.transferenciaService.obtenerTransferenciasPorUsuario(req, res, next);
     }
 

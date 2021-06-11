@@ -16,10 +16,12 @@ export class DestinatarioController {
     }
 
     private guardarDestinatario = async (req: Request, res: Response, next: NextFunction) => {
+        console.log('DestinatarioController - guardarDestinatario');
         return await this.destinatarioService.guardarDestinatario(req, res, next);
     }
 
     private obtenerDestinatarios = async (req: Request, res: Response, next: NextFunction) => {
+        console.log('DestinatarioController - obtenerDestinatario');
         return await this.destinatarioService.obtenerDestinatarios(req, res, next);
     }
 
