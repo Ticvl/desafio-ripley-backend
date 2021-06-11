@@ -2,7 +2,7 @@ import { Router, NextFunction, Response, Request } from "express";
 import { UsuarioService } from "../services/usuario.service";
 
 
-export class Usuario {
+export class UsuarioController {
 
     public router = Router();
     private usuarioService = new UsuarioService();
@@ -16,12 +16,6 @@ export class Usuario {
     }
 
     public crearUsuario = async (req: Request, res: Response, next: NextFunction) => {
-        return await this.usuarioService.crearUsuario(req.body.correo, req.body.password)
-        .then((result) => {
-            res.send(result);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        return await this.usuarioService.crearUsuario(req, res , next);
     }
 }
