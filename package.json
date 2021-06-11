@@ -2,7 +2,7 @@
   "name": "desafio-ripley-back",
   "version": "1.0.0",
   "description": "",
-  "main": "app.ts",
+  "main": "app.js",
   "scripts": {
     "start": "npm install && tsc && node ./dist/app.js",
     "build": "tsc",
