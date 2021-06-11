@@ -1,4 +1,3 @@
-import dotenv from 'dotenv';
 import express from 'express';
 const mongoose = require('mongoose');
 import cors from "cors";
@@ -9,11 +8,6 @@ import { AuthController } from './controllers/auth.controller';
 import { AuthMiddleware } from './middlewares/auth.middleware';
 
 const CONFIG = require('./configs/config');
-
-dotenv.config({
-  path: '.env'
-});
-
 class Server {
   public app = express();
   public destinatarioController = new DestinatarioController();
@@ -30,7 +24,8 @@ server.app.use(cors({
   allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "X-Access-Token","Authorization"],
   methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
   credentials: true,
-  origin: CONFIG.CORS_ORIGIN
+  origin: ["http://heroku.amazonaws.com:8080", "http://localhost:5000"]
+
 }));
 
 console.log(JSON.stringify(process.env.NODE_ENV));
