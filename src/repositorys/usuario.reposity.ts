@@ -19,4 +19,13 @@ export class UsuarioRepository {
             throw new AppException(500, 'Error al intentar guardar información');
         }
     }
+
+    existeUsuario = async (correo: string) => {
+        try {
+            return await usuarioModel.findOne({ correo: correo });
+        } catch(error) {
+            throw new AppException(500, 'Error al intentar obtener información');
+        }
+
+    }
 }
