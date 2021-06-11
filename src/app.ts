@@ -32,7 +32,7 @@ console.log(JSON.stringify(process.env.NODE_ENV));
 
 server.app.use('/destinatario', server.authMiddleware.auth, server.destinatarioController.router);
 server.app.use('/transferencia', server.authMiddleware.auth, server.transferenciaController.router);
-server.app.use('/usuario', server.authMiddleware.auth, server.usuarioController.router);
+server.app.use('/usuario', server.usuarioController.router);
 server.app.use('/auth', server.authController.router);
 
 // make server listen on some port
