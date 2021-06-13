@@ -9,6 +9,11 @@ const usuarioSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    rut: {
+        type: String,
+        required: true,
+        unique: true
     }
 });
 

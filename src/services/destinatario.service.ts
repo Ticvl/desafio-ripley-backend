@@ -10,6 +10,8 @@ export class DestinatarioService {
     constructor() { }
 
     public guardarDestinatario = async (req: Request, res: Response, next: NextFunction) => {
+        console.log('DestinatarioService - guardarDestinatario');
+        console.log(req.body);
         if(!req.body.usuario || !req.body.nombre || !req.body.rut || !req.body.correo
             || !req.body.numeroTelefono || !req.body.bancoDestino || !req.body.tipoCuenta || !req.body.numeroCuenta) {
             res.status(422).send({ error: 'Campos incompletos' });
